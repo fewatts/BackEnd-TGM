@@ -1,6 +1,5 @@
 package com.generation.thegreenmarket.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,5 +32,45 @@ public class Produto {
     @Positive
     @Digits(integer=6,fraction=2,message="O preço é obrigatorio")
     private float valorProduto;
+
+    public Long getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public String getDescricaoProduto() {
+        return descricaoProduto;
+    }
+
+    public void setDescricaoProduto(String descricaoProduto) {
+        this.descricaoProduto = descricaoProduto;
+    }
+
+    public Integer getQuantidadeProduto() {
+        return quantidadeProduto;
+    }
+
+    public void setQuantidadeProduto(Integer quantidadeProduto) {
+        this.quantidadeProduto = quantidadeProduto;
+    }
+
+    public float getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(float valorProduto) {
+        this.valorProduto = valorProduto;
+    }
 
 }
