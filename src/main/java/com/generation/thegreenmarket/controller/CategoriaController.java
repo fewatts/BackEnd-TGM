@@ -33,7 +33,7 @@ public class CategoriaController {
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	@GetMapping("/filtrar/{categoria}")
+	@GetMapping("/titulo/{categoria}")
 	public ResponseEntity<List<Categoria>> getByTitle(@PathVariable String categoria){
 		return ResponseEntity.ok(categoriaRepository.findAllByNomeCategoriaContainingIgnoreCase(categoria));
 	}
