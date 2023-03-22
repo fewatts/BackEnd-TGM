@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -13,76 +14,90 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "tb_produtos")
 public class Produto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProduto;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idProduto;
 
-    @NotBlank(message = "Atibuto nome do produto é obrigatório")
-    @Size(min = 5, max = 100, message = "Atributo nome do produto deve conter no mínimo 5 caracteres e no máximo 100 caracteres")
-    private String nomeProduto;
+	@NotBlank(message = "Atributo nome do produto é obrigatório")
+	@Size(min = 5, max = 100, message = "Atributo nome do produto deve conter no mínimo 5 caracteres e no máximo 100 caracteres")
+	private String nomeProduto;
 
-    @NotNull(message = "Atributo descrição é obrigatório")
-    private String descricaoProduto;
+	@NotNull(message = "Atributo descrição é obrigatório")
+	private String descricaoProduto;
 
-    @Positive
-    private Integer quantidadeProduto;
+	@Positive
+	private Integer quantidadeProduto;
 
-    @Positive
-    @Digits(integer = 6, fraction = 2, message = "O preço é obrigatorio")
-    private BigDecimal valorProduto;
+	@Positive
+	@Digits(integer = 6, fraction = 2, message = "O preço é obrigatorio")
+	private BigDecimal valorProduto;
 
-    private String foto;
+	private String foto;
 
-    public Long getIdProduto() {
-        return idProduto;
-    }
+	@ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private Categoria categoria;
 
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
-    }
+	public Long getIdProduto() {
+		return idProduto;
+	}
 
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
+	}
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
 
-    public String getDescricaoProduto() {
-        return descricaoProduto;
-    }
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
+	}
 
-    public void setDescricaoProduto(String descricaoProduto) {
-        this.descricaoProduto = descricaoProduto;
-    }
+	public String getDescricaoProduto() {
+		return descricaoProduto;
+	}
 
-    public Integer getQuantidadeProduto() {
-        return quantidadeProduto;
-    }
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
+	}
 
-    public void setQuantidadeProduto(Integer quantidadeProduto) {
-        this.quantidadeProduto = quantidadeProduto;
-    }
+	public Integer getQuantidadeProduto() {
+		return quantidadeProduto;
+	}
 
-    public BigDecimal getValorProduto() {
-        return valorProduto;
-    }
+	public void setQuantidadeProduto(Integer quantidadeProduto) {
+		this.quantidadeProduto = quantidadeProduto;
+	}
 
-    public void setValorProduto(BigDecimal valorProduto) {
-        this.valorProduto = valorProduto;
-    }
+	public BigDecimal getValorProduto() {
+		return valorProduto;
+	}
 
-    public String getFoto() {
-        return foto;
-    }
+	public void setValorProduto(BigDecimal valorProduto) {
+		this.valorProduto = valorProduto;
+	}
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-    
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 }
