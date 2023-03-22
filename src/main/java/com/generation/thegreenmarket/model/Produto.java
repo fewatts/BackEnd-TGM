@@ -1,5 +1,7 @@
 package com.generation.thegreenmarket.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,8 +32,8 @@ public class Produto {
     private Integer quantidadeProduto;
 
     @Positive
-    @Digits(integer=6,fraction=2,message="O preço é obrigatorio")
-    private float valorProduto;
+    @Digits(integer = 6, fraction = 2, message = "O preço é obrigatorio")
+    private BigDecimal valorProduto;
 
     public Long getIdProduto() {
         return idProduto;
@@ -65,11 +67,11 @@ public class Produto {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public float getValorProduto() {
+    public BigDecimal getValorProduto() {
         return valorProduto;
     }
 
-    public void setValorProduto(float valorProduto) {
+    public void setValorProduto(BigDecimal valorProduto) {
         this.valorProduto = valorProduto;
     }
 
