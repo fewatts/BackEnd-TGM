@@ -25,7 +25,7 @@ public class Produto {
     @Size(min = 5, max = 100, message = "Atributo nome do produto deve conter no mínimo 5 caracteres e no máximo 100 caracteres")
     private String nomeProduto;
 
-    @NotNull(message = "Atibuto descrição é obrigatório")
+    @NotNull(message = "Atributo descrição é obrigatório")
     private String descricaoProduto;
 
     @Positive
@@ -34,6 +34,8 @@ public class Produto {
     @Positive
     @Digits(integer = 6, fraction = 2, message = "O preço é obrigatorio")
     private BigDecimal valorProduto;
+
+    private String foto;
 
     public Long getIdProduto() {
         return idProduto;
@@ -75,4 +77,12 @@ public class Produto {
         this.valorProduto = valorProduto;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
 }
