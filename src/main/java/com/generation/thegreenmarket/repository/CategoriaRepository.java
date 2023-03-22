@@ -11,8 +11,8 @@ import com.generation.thegreenmarket.model.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 	
-	public List<Categoria> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
+	public List<Categoria> findAllByNomeCategoriaContainingIgnoreCase(@Param("nome") String nome);
 
-	public List<Categoria> findAllByDescricaoContainingIgnoreCase(@Param("descricao") String descricao);
+	public List<Categoria> findAllByDescricaoCategoriaContainingIgnoreCase(@Param("descricao") String descricao);
 
 }
