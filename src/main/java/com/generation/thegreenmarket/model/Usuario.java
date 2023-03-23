@@ -44,6 +44,7 @@ public class Usuario {
     private String cepUsuario;
 
     @Email
+    @Column(unique = true)
     private String emailUsuario;
 
     @NotBlank(message = "A senha do usuário é obrigatória!")
