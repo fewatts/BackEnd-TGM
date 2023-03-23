@@ -82,7 +82,7 @@ public class ProdutoController {
 		if(produto.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		produtoRepository.deleteById(id);
+		produtoRepository.deleteById(id); 
 	}
 
 }
