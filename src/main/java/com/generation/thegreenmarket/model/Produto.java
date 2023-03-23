@@ -24,28 +24,28 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProduto;
 
-	@NotBlank(message = "Atributo nome do produto é obrigatório")
-	@Size(min = 5, max = 100, message = "Atributo nome do produto deve conter no mínimo 5 caracteres e no máximo 100 caracteres")
+	@NotBlank(message = "O atributo 'nome do produto' é obrigatório")
+	@Size(min = 5, max = 100, message = "O atributo 'nome do produto' deve conter no mínimo 5 caracteres e no máximo 100 caracteres")
 	private String nomeProduto;
 
-	@NotNull(message = "Atributo descrição é obrigatório")
+	@NotNull(message = "O atributo 'descrição' é obrigatório")
 	private String descricaoProduto;
 
 	@Positive
-	private Integer quantidadeProduto;
+	private Integer qtdProduto;
 
 	@Positive
 	@Digits(integer = 6, fraction = 2, message = "O preço é obrigatorio")
-	private BigDecimal valorProduto;
+	private BigDecimal precoProduto;
 
-	private String foto;
+	private String fotoProduto;
 
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties("produtos")
 	private Usuario usuario;
 
 	public Long getIdProduto() {
@@ -72,28 +72,28 @@ public class Produto {
 		this.descricaoProduto = descricaoProduto;
 	}
 
-	public Integer getQuantidadeProduto() {
-		return quantidadeProduto;
+	public Integer getQtdProduto() {
+		return qtdProduto;
 	}
 
-	public void setQuantidadeProduto(Integer quantidadeProduto) {
-		this.quantidadeProduto = quantidadeProduto;
+	public void setQtdProduto(Integer qtdProduto) {
+		this.qtdProduto = qtdProduto;
 	}
 
-	public BigDecimal getValorProduto() {
-		return valorProduto;
+	public BigDecimal getPrecoProduto() {
+		return precoProduto;
 	}
 
-	public void setValorProduto(BigDecimal valorProduto) {
-		this.valorProduto = valorProduto;
+	public void setPrecoProduto(BigDecimal precoProduto) {
+		this.precoProduto = precoProduto;
 	}
 
-	public String getFoto() {
-		return foto;
+	public String getFotoProduto() {
+		return fotoProduto;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setFotoProduto(String fotoProduto) {
+		this.fotoProduto = fotoProduto;
 	}
 
 	public Categoria getCategoria() {
@@ -102,6 +102,14 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
