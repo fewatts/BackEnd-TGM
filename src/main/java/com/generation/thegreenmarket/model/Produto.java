@@ -44,9 +44,9 @@ public class Produto {
 	@JsonIgnoreProperties("produtos")
 	private Categoria categoria;
 
-	@ManyToOne
-	@JsonIgnoreProperties("produtos")
-	private Usuario usuario;
+	//@ManyToOne
+	//@JsonIgnoreProperties("produtos")
+	//private Usuario usuario;
 
 	public Long getIdProduto() {
 		return idProduto;
@@ -104,12 +104,6 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+	
 
 }

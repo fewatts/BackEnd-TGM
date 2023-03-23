@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.thegreenmarket.model.Produto;
 import com.generation.thegreenmarket.repository.CategoriaRepository;
 import com.generation.thegreenmarket.repository.ProdutoRepository;
-import com.generation.thegreenmarket.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/produtos")
@@ -30,9 +30,8 @@ public class ProdutoController {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+
 	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
 
 	@GetMapping
 	public ResponseEntity<List<Produto>> getAll() {
@@ -41,27 +40,34 @@ public class ProdutoController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> getById(@PathVariable Long id) {
-		return produtoRepository.findById(id)
-				.map(resposta -> ResponseEntity.ok(resposta))
+		return produtoRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) {
-		
-		if (usuarioRepository.existsById(produto.getUsuario().getIdUsuario())) {
-			
-			if (categoriaRepository.existsById(produto.getCategoria().getIdCategoria())) {
-				return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
-			}
-			
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-			
+
+		if (categoriaRepository.existsById(produto.getCategoria().getIdCategoria())) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
 		}
 
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+	}
+
+	@PutMapping
+	public ResponseEntity<Produto> put(@Valid @RequestBody Produto produto) {
+		if (produtoRepository.existsById(produto.getIdProduto())) {
+
+			if (categoriaRepository.existsById(produto.getCategoria().getIdCategoria())) {
+				return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
+			}
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-			
+
 	}
 
 }

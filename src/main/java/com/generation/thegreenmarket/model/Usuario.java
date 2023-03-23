@@ -1,21 +1,17 @@
 package com.generation.thegreenmarket.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.persistence.CascadeType;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "tb_usuarios")
@@ -28,8 +24,8 @@ public class Usuario {
     @Size(min = 3, max = 85, message = "O nome deve ter no mínimo 3 e no máximo 85 caracteres!")
     private String nomeUsuario;
 
+    @CPF
     @NotBlank(message = "O CPF do usuário é obrigatório!")
-    @Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres!")
     @Column(unique = true)
     private String cpfUsuario;
 
@@ -44,16 +40,15 @@ public class Usuario {
     private String cepUsuario;
 
     @Email
-    @Column(unique = true)
-    private String emailUsuario;
+    private String usuario;
 
     @NotBlank(message = "A senha do usuário é obrigatória!")
     @Size(min = 8, max = 20, message = "A senha do usuário deve ter no mínimo 8 e no máximo 20 caracteres!")
     private String senhaUsuario;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
-    private List<Produto> produtos;
+    //@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    //@JsonIgnoreProperties("usuario")
+    //private List<Produto> produtos;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -103,12 +98,12 @@ public class Usuario {
         this.cepUsuario = cepUsuario;
     }
 
-    public String getEmailUsuario() {
-        return emailUsuario;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenhaUsuario() {
@@ -119,12 +114,5 @@ public class Usuario {
         this.senhaUsuario = senhaUsuario;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
 
 }
