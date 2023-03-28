@@ -39,8 +39,17 @@
 		<dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-           <scope>test</scope>
         </dependency>
+        <!-- Dependência da Spring Security -->
+		<dependency>  
+			<groupId>org.springframework.boot</groupId>  
+			<artifactId>spring-boot-starter-security</artifactId>  
+		</dependency>
+       <!-- Dependência para Codificação do Token -->
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>

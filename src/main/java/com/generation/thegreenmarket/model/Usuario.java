@@ -1,10 +1,14 @@
 package com.generation.thegreenmarket.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
@@ -43,12 +49,15 @@ public class Usuario {
     private String usuario;
 
     @NotBlank(message = "A senha do usuário é obrigatória!")
-    @Size(min = 8, max = 20, message = "A senha do usuário deve ter no mínimo 8 e no máximo 20 caracteres!")
+    @Size(min = 8, message = "A senha do usuário deve ter no mínimo 8!")
     private String senhaUsuario;
 
-    //@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    //@JsonIgnoreProperties("usuario")
-    //private List<Produto> produtos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
+    private List<Produto> produtos;
+    
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+	private String foto;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -114,5 +123,12 @@ public class Usuario {
         this.senhaUsuario = senhaUsuario;
     }
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
 
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+    
 }

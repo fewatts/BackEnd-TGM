@@ -37,16 +37,18 @@ public class Produto {
 	@Positive
 	@Digits(integer = 6, fraction = 2, message = "O preço é obrigatorio")
 	private BigDecimal precoProduto;
-
+	
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String fotoProduto;
+	
 
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
 	private Categoria categoria;
 
-	//@ManyToOne
-	//@JsonIgnoreProperties("produtos")
-	//private Usuario usuario;
+	@ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private Usuario usuario;
 
 	public Long getIdProduto() {
 		return idProduto;
@@ -104,6 +106,13 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 
 }
