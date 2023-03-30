@@ -19,6 +19,8 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -45,6 +47,7 @@ public class Usuario {
 	@Size(min = 8, max = 8, message = "O CEP deve ter 8 caracteres!")
 	private String cepUsuario;
 
+	@Schema(example = "email@email.com")
 	@Email
 	private String usuario;
 
