@@ -25,7 +25,7 @@ Método | Requisição do Endpoint | Descrição |
 | POST | /produtos | Cadastrar um novo produto |
 | GET | /produtos | Consultar todos os produtos |
 | GET | /produtos/{id} | Consultar um produto por ID |
-| PUT | /produtos | Atualizar uma produto |
+| PUT | /produtos | Atualizar um produto |
 | DELETE | /produtos/{id} | Deletar um produto por ID |
 | POST | /categorias | Cadastrar uma nova categoria |
 | GET | /categorias | Consultar todas as categorias |
